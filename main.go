@@ -1,10 +1,18 @@
 // Package adder adds together two integers
 package adder
 
-// Add adds together two integers returning their value.
+import (
+	"golang.org/x/exp/constraints"
+)
+
+type Number interface {
+	constraints.Integer | constraints.Float
+}
+
+// Add adds together two [Number] returning their sum
 //
 // More information on adding can be found at [Mathisfun].
 // [Mathisfun]: https://www.mathisfun.com/numbers/addition.html
-func Add(a, b int) int {
+func Add[T Number](a, b T) T {
 	return a + b
 }
